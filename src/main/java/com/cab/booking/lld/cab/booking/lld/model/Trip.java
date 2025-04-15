@@ -1,9 +1,10 @@
 package com.cab.booking.lld.cab.booking.lld.model;
 
-enum TripStatus{
-    IN_PROGRESS, COMPLETED
-}
+import lombok.Getter;
 
+
+
+@Getter
 public class Trip {
     private String id;
     private Rider rider;

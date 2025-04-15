@@ -1,5 +1,6 @@
 package com.cab.booking.lld.cab.booking.lld.repository;
 
+import com.cab.booking.lld.cab.booking.lld.exceptions.NoUserFoundException;
 import com.cab.booking.lld.cab.booking.lld.exceptions.UserAlreadyExistException;
 import com.cab.booking.lld.cab.booking.lld.model.Driver;
 import lombok.NonNull;
@@ -17,4 +18,11 @@ public class DriverRepository {
         }
         return drivers.put(driver.getId(), driver).getId();
     }
+
+   public Driver getById(String id){
+        if(!drivers.containsKey(id)){
+            throw new NoUserFoundException("No driver with id :"+ id);
+        }
+        return drivers.get(id);
+   }
 }

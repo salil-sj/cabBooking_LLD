@@ -19,4 +19,8 @@ public class RiderRepository {
         return rider.getId();
     }
 
+    public Rider getById(String id){
+        return riders.get(id);
+    }
+
 }

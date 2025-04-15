@@ -24,4 +24,8 @@ public class DriverService {
             return "Error " + exception.getMessage();
         }
     }
+
+    public Driver getDriverById(String driverId){
+
+    }
 }

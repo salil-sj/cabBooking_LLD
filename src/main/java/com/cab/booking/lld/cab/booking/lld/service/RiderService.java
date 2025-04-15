@@ -23,4 +23,8 @@ public class RiderService {
             return "Error " + exception.getMessage();
         }
     }
+
+    public Rider getRider(String riderId){
+        return riderRepository.getById(riderId);
+    }
 }

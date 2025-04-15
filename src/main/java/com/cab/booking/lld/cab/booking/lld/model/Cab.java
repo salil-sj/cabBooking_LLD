@@ -1,7 +1,29 @@
 package com.cab.booking.lld.cab.booking.lld.model;
 
-public class Cab {
-    String id;
-    Driver driver;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@AllArgsConstructor
+public class Cab {
+    private String id;
+    private String reg;
+    private Driver driver;
+    @Setter
+    private Trip currentTrip;
+    @Setter
+    private Location currentLocation;
+    @Setter
+    private boolean isAvaliable;
+
+    public void assignTrip(Trip trip) {
+        this.currentTrip = trip;
+        this.isAvaliable = false;
+    }
+
+    public void endTrip() {
+        this.currentTrip=null;
+        this.isAvaliable=true;
+    }
 }
