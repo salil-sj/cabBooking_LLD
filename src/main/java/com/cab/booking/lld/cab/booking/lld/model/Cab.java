@@ -3,9 +3,11 @@ package com.cab.booking.lld.cab.booking.lld.model;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @AllArgsConstructor
+@ToString
 public class Cab {
     private String id;
     private String reg;

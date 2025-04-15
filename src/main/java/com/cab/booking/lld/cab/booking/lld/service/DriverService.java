@@ -17,7 +17,7 @@ public class DriverService {
 
     public String registerDriver(String name) {
         String id = UUID.randomUUID().toString();
-        Driver rider = new Driver();
+        Driver rider = new Driver(id,name);
         try {
             return driverRepository.save(rider);
         } catch (UserAlreadyExistException exception) {

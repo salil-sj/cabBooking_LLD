@@ -1,5 +1,6 @@
 package com.cab.booking.lld.cab.booking.lld.service;
 
+import com.cab.booking.lld.cab.booking.lld.exceptions.NoCabDoundException;
 import com.cab.booking.lld.cab.booking.lld.model.Cab;
 import com.cab.booking.lld.cab.booking.lld.model.Location;
 import com.cab.booking.lld.cab.booking.lld.model.Rider;
@@ -39,6 +40,9 @@ public class TripService {
         double fare = fareCalculationStrategy.calculateFare(sourceLocation, destinationLocation);
         Rider rider = riderService.getRider(riderId);
         Cab assignedCab = cabSearchingStrategy.getCab(cabService.getAvaliableCabs(),sourceLocation,destinationLocation);
+        if(assignedCab == null){
+            throw new NoCabDoundException("No Cab found");
+        }
         String tripId = UUID.randomUUID().toString();
         Trip trip= new Trip(tripId,rider,fare, sourceLocation,destinationLocation,assignedCab);
         assignedCab.assignTrip(trip);
@@ -47,7 +51,10 @@ public class TripService {
     }
 
     public void endTrip(String tripId){
+        Trip trip = tripRepository.findById(tripId);
         tripRepository.endTrip(tripId);
+        cabService.updateCabAvaliability(trip.getCab().getId(),true);
+
     }
 
     public List<Trip> getTripHistory(String riderId){

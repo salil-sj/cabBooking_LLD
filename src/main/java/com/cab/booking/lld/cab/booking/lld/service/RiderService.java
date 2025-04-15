@@ -16,7 +16,7 @@ public class RiderService {
 
     public String registerRider(String name) {
         String id = UUID.randomUUID().toString();
-        Rider rider = new Rider();
+        Rider rider = new Rider(id,name);
         try {
             return riderRepository.save(rider);
         } catch (UserAlreadyExistException exception) {

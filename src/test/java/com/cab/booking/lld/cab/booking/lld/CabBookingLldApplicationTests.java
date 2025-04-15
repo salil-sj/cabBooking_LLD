@@ -20,12 +20,14 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
+
 @SpringBootTest
 class CabBookingLldApplicationTests {
 
 	CabsController cabsController;
 	RideController rideController;
-
+	CabRepository cabRepository;
 	@Test
 	void contextLoads() {
 	}
@@ -33,7 +35,7 @@ class CabBookingLldApplicationTests {
 	@BeforeEach
 	void setup(){
 		//Repository:
-		CabRepository cabRepository = new CabRepository();
+		 cabRepository = new CabRepository();
 		DriverRepository driverRepository = new DriverRepository();
 		RiderRepository riderRepository = new RiderRepository();
 		TripRepository tripRepository= new TripRepository();
@@ -56,6 +58,7 @@ class CabBookingLldApplicationTests {
 	//1. Register a rider:
 		String id1 = rideController.registerRider("Salil");
 		String id2 =rideController.registerRider("Ajay");
+		String id9 =rideController.registerRider("sonam");
 		String id3 =rideController.registerDriver("vijay");
 		String id4 =rideController.registerDriver("mohan");
 
@@ -65,8 +68,32 @@ class CabBookingLldApplicationTests {
 
 		// UPDATE LOCATION:
 		cabsController.updateCabLocation(id5,2.2,5.2);
-		cabsController.updateCabAvaliability(id3, true);
-		cabsController.updateCabAvaliability(id4,true);
+		cabsController.updateCabLocation(id6,2.2,5.2);
+		cabsController.updateCabAvaliability(id5, true);
+		cabsController.updateCabAvaliability(id5,true);
+
+		List<Cab> cabs = cabRepository.getAllCabs();
+		System.out.println(cabs);
+
+		String rideId = rideController.bookRide(id1,4.1,4.2,5.1,5.1);
+		cabs = cabRepository.getAllCabs();
+		System.out.println(cabs);
+		String rideid2= rideController.bookRide(id2,4.1,4.2,5.1,5.1);
+		cabs = cabRepository.getAllCabs();
+		System.out.println(cabs);
+
+		//String rideId3= rideController.bookRide(id9,4.1,4.2,5.1,5.1);
+		rideController.endTrip(rideId);
+
+		System.out.printf("Getting cabs......");
+		cabs = cabRepository.getAllCabs();
+		System.out.println(cabs);
+
+		String rideId4= rideController.bookRide(id9,4.1,4.2,5.1,5.1);
+		System.out.printf("Ride id4 : %s",rideId4);
+
+
+
 
 	}
 

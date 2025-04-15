@@ -1,5 +1,6 @@
 package com.cab.booking.lld.cab.booking.lld.model;
 
+import lombok.Data;
 import lombok.Getter;
 
 

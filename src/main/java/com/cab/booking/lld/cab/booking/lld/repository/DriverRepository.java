@@ -16,7 +16,8 @@ public class DriverRepository {
         if(drivers.containsKey(driver.getId())){
             throw new UserAlreadyExistException("Sorry, user is already present!");
         }
-        return drivers.put(driver.getId(), driver).getId();
+        drivers.put(driver.getId(), driver);
+        return driver.getId();
     }
 
    public Driver getById(String id){

@@ -4,8 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;
 
-@Getter
-@AllArgsConstructor
 @ToString
 public class Rider extends User{
+    public Rider(String id, String name) {
+        super(id,name);
+    }
 }

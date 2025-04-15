@@ -19,7 +19,8 @@ public class CabRepository {
         if(cabs.containsKey(cab.getId())){
             throw new UserAlreadyExistException("Sorry, user is already present!");
         }
-        return cabs.put(cab.getId(), cab).getId();
+        cabs.put(cab.getId(), cab);
+        return cab.getId();
     }
 
     public Cab findById(String id){
@@ -31,6 +32,9 @@ public class CabRepository {
 
     public List<Cab> getAvaliableCabs(){
        return cabs.values().stream().filter(Cab::isAvaliable).collect(Collectors.toList());
+    }
+    public  List<Cab> getAllCabs(){
+        return cabs.values().stream().toList();
     }
 
 }
