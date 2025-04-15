@@ -11,8 +11,8 @@ public class DriverService {
 
     private DriverRepository driverRepository;
 
-    public DriverService() {
-        this.driverRepository = new DriverRepository();
+    public DriverService(DriverRepository driverRepository) {
+        this.driverRepository = driverRepository;
     }
 
     public String registerDriver(String name) {
@@ -26,6 +26,6 @@ public class DriverService {
     }
 
     public Driver getDriverById(String driverId){
-
+        return driverRepository.getById(driverId);
     }
 }

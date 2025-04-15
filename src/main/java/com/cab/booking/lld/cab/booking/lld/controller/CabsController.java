@@ -8,27 +8,21 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class CabsController {
-     /*
-    -/register/cab POST
-    -/update/cab/location POST
-    -update/cab/avaliability POST
-    -update/cab/endTrip POST
-     */
 
     private CabService cabService;
 
-    public CabsController() {
-        this.cabService = new CabService();
+    public CabsController(CabService cabService) {
+        this.cabService = cabService;
     }
 
-    @PostMapping("/register/cab")
-    public ResponseEntity<String> registerCab(String driverId, String reg) {
+
+    public String registerCab(String driverId, String reg) {
         String id = cabService.registerCab(driverId, reg);
-        return ResponseEntity.ok(id);
+        return id;
     }
 
     @PostMapping("/update/location")
-    public void updateCabLocation(String cabId, Location location) {
+    public void updateCabLocation(String cabId, Double x , Double y ) {
         cabService.updateCabLocation(cabId,location);
     }
 

@@ -10,8 +10,8 @@ public class RiderService {
 
     private RiderRepository riderRepository;
 
-    public RiderService() {
-        this.riderRepository = new RiderRepository();
+    public RiderService(RiderRepository riderRepository) {
+        this.riderRepository = riderRepository;
     }
 
     public String registerRider(String name) {

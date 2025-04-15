@@ -20,7 +20,7 @@ public class TripService {
     private RiderService riderService;
     private TripRepository tripRepository;
 
-    TripService(FareCalculationStrategy fareCalculationStrategy,
+    public TripService(FareCalculationStrategy fareCalculationStrategy,
                 CabSearchingStrategy cabSearchingStrategy,
                 CabService cabService,
                 RiderService riderService,

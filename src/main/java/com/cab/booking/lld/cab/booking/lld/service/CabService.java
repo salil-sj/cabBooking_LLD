@@ -14,9 +14,9 @@ public class CabService {
     private CabRepository cabRepository;
     private DriverService driverService;
 
-    public CabService(){
-        this.cabRepository=new CabRepository();
-        this.driverService= new DriverService();
+    public CabService(CabRepository cabRepository, DriverService driverService){
+        this.cabRepository=cabRepository;
+        this.driverService= driverService;
     }
 
     public String registerCab(String reg, String driverId ) {
@@ -30,7 +30,8 @@ public class CabService {
         }
     }
 
-    public void updateCabLocation(String cabId, Location location){
+    public void updateCabLocation(String cabId, Double x, Double y){
+        Location location= new Location(x,y);
         Cab cab = getCabDetails(cabId);
         cab.setCurrentLocation(location);
     }

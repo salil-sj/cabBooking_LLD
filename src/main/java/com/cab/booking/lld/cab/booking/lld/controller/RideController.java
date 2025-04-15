@@ -26,21 +26,21 @@ public class RideController {
         this.tripService = tripService;
     }
 
-    @PostMapping("register/rider")
-    public ResponseEntity<String> registerRider(String name) {
+
+    public String registerRider(String name) {
         String id = riderService.registerRider(name);
-        return ResponseEntity.ok(id);
+        return id;
     }
 
-    @PostMapping("register/driver")
-    public ResponseEntity<String> registerDriver(String name) {
+
+    public String registerDriver(String name) {
         String id = driverService.registerDriver(name);
-        return ResponseEntity.ok(id);
+        return id;
     }
 
-    public ResponseEntity<String> bookRide(String riderId, Double sourceX, Double sourceY, Double destX, Double destY) {
+    public String bookRide(String riderId, Double sourceX, Double sourceY, Double destX, Double destY) {
         String id = tripService.bookRide(riderId, sourceX, sourceY, destX, destY);
-        return ResponseEntity.ok(id);
+        return id;
     }
 
     public void endTrip(String tripId) {
